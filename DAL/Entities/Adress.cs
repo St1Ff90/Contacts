@@ -8,7 +8,7 @@
         public string AdressText { get; set; }
         public string Description { get; set; }
 
-        public Client Client { get; set; }
+        public Client? Client { get; set; }
         public Guid ClientId { get; set; }
         public Adress()
         {

@@ -1,6 +1,8 @@
-﻿using DAL;
+﻿using ContactsMVC.Models;
+using DAL;
 using DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactsMVC.Controllers
@@ -17,11 +19,29 @@ namespace ContactsMVC.Controllers
 
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Guid Id)
         {
+
+            //ClientViewListModel clientViewListModel = new ClientViewListModel();
+            //if(db.Clients != null)
+            //{
+            //    clientViewListModel.Clients = await db.Clients.ToListAsync();
+            //    clientViewListModel.FulName = new SelectList(await db.Clients.Select(x => x.FullName).ToListAsync());
+            //    View(clientViewListModel);
+            //}
+            //else
+            //{
+            //    Problem("Entity set 'Clients'  is null.");
+            //}
+
+
+            ViewData["Id"] = Id;
+
+
             return db.Clients != null ?
-                               View(await db.Clients.ToListAsync()) :
+                               View(await db.Clients.Include(x => x.Contacts).Include(x => x.Adresses).ToListAsync()) :
                                Problem("Entity set 'Clients'  is null.");
+
         }
 
         // GET: Goods/Details/5

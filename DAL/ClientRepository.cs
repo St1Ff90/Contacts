@@ -31,7 +31,7 @@ namespace DAL
             Client client = await _dbContext.Clients.Where(x => x.Id == id).Include(x => x.Contacts).Include(x => x.Adresses).FirstAsync();
             _dbContext.Clients.Remove(client);
             await _dbContext.SaveChangesAsync();
-        
+
             return client;
         }
 

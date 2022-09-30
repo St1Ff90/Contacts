@@ -1,4 +1,6 @@
-﻿namespace DAL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DAL.Entities
 {
     public class Contact
     {
@@ -8,6 +10,9 @@
         public string Phone { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
+        
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+
         public DateTime BirthDayDate { get; set; }
 
         public Client? Client { get; set; }
